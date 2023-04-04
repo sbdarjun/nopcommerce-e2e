@@ -36,5 +36,11 @@ class LoginPage {
   loginValidationMessage() {
     return cy.get(".message-error", { timeout: 10000 }).should("be.visible");
   }
+  validLoginData() {
+    cy.fixture("data").then((data) => {
+      this.userNameInput().type(data.validUsers.email);
+      this.passwordInput().type(data.validUsers.password);
+    });
+  }
 }
 export default LoginPage;

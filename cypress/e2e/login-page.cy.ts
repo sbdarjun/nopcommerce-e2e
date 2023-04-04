@@ -1,8 +1,13 @@
 /// <reference types="Cypress" />
+import { data } from "cypress/types/jquery";
 import fake from "../fixtures/faker";
 import LoginPage from "../support/page-objects/login-page.po";
 describe("Visit Login Page", () => {
   var loginPage = new LoginPage();
+  beforeEach(() => {
+    // Load the test data from fixtures
+    cy.fixture("data").as("data");
+  });
   it("and validate component", () => {
     loginPage.visit();
     loginPage.loginTitle();
@@ -28,5 +33,12 @@ describe("Visit Login Page", () => {
     loginPage.loginBtn().click();
     loginPage.loginPageLoad();
     loginPage.loginValidationMessage();
+  });
+  it("and verify login with valid username and passwrod", () => {
+    loginPage.visit();
+    loginPage.validLoginData();
+    loginPage.rememberMeCheck().click();
+    loginPage.loginBtn().click();
+    cy.visit("/");
   });
 });
