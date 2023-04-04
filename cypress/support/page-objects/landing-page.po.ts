@@ -1,5 +1,5 @@
 /// <reference types="Cypress" />
-class HomePage {
+class LandingPage {
   visit() {
     cy.visit("/");
     cy.get(".home-banner-text-section").contains(
@@ -20,4 +20,4 @@ class HomePage {
     // cy.contains("Log in").click({ force: true });
   }
 }
-export default HomePage;
+export default LandingPage;

@@ -30,5 +30,11 @@ class LoginPage {
   loginBtn() {
     return cy.get(".buttons").contains("Log in");
   }
+  loginPageLoad() {
+    cy.location("pathname", { timeout: 10000 }).should("eq", "/en/login");
+  }
+  loginValidationMessage() {
+    return cy.get(".message-error", { timeout: 10000 }).should("be.visible");
+  }
 }
 export default LoginPage;
