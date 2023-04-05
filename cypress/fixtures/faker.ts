@@ -4,6 +4,7 @@ const fake = {
   firstName: () => faker.name.firstName(),
   lastName: () => faker.name.lastName(),
   number: () => faker.datatype.number(),
-  word: () => faker.random.word(),
+  words: () => faker.random.words(3),
+  url: () => faker.internet.url(),
 };
 export default fake;
