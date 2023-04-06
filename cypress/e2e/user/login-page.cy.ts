@@ -1,7 +1,7 @@
 /// <reference types="Cypress" />
 import { data } from "cypress/types/jquery";
-import fake from "../fixtures/faker";
-import LoginPage from "../support/page-objects/login-page.po";
+import fake from "../../fixtures/faker";
+import LoginPage from "../../support/page-objects/user/login-page.po";
 describe("Visit Login Page", () => {
   var loginPage = new LoginPage();
   beforeEach(() => {
@@ -29,7 +29,7 @@ describe("Visit Login Page", () => {
   it("and vaerify login with invalid username and password", () => {
     loginPage.visit();
     loginPage.userNameInput().type(fake.email());
-    loginPage.passwordInput().type(fake.word());
+    loginPage.passwordInput().type(fake.words());
     loginPage.loginBtn().click();
     loginPage.loginPageLoad();
     loginPage.loginValidationMessage();

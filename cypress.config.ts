@@ -5,5 +5,6 @@ module.exports = {
       // implement node event listeners here
     },
     baseUrl: "https://www.nopcommerce.com/en",
+    adminUrl: "https://admin-demo.nopcommerce.com/",
   },
 };

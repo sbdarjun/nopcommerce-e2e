@@ -1,8 +1,8 @@
 /// <reference types="Cypress" />
 import { faker } from "@faker-js/faker";
-import RegisterPage from "../support/page-objects/register-page.po";
+import RegisterPage from "../../support/page-objects/user/register-page.po";
 import { words } from "cypress/types/lodash";
-import fake from "../fixtures/faker";
+import fake from "../../fixtures/faker";
 describe("Visit Register Page", () => {
   var registerPage = new RegisterPage();
   var email = faker.internet.email();
