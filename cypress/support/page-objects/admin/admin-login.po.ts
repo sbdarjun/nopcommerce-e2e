@@ -27,5 +27,17 @@ class AdminLogin {
   loginPageBottomText() {
     return cy.get(".topic-block-title").contains("Defaults for admin area");
   }
+  emailValidMessage() {
+    return cy.get("#Email-error").contains("Please enter your email");
+  }
+  validationMessage() {
+    return cy.get(".message-error").should("exist");
+  }
+  validAdminLoginData() {
+    cy.fixture("data").then((data) => {
+      this.emailInput().clear().type(data.adminUser.email);
+      this.passwordInput().clear().type(data.adminUser.password);
+    });
+  }
 }
 export default AdminLogin;

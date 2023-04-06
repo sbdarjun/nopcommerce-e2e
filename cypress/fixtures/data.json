@@ -3,5 +3,10 @@
       {
         "email": "asubedi@sevadev.com",
         "password": "test@123"
+      },
+      "adminUser":
+      {
+        "email": "admin@yourstore.com",
+        "password": "admin"
       }
 }

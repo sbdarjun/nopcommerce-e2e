@@ -34,7 +34,7 @@ describe("Visit Login Page", () => {
     loginPage.loginPageLoad();
     loginPage.loginValidationMessage();
   });
-  it("and verify login with valid username and passwrod", () => {
+  it("and verify login with valid username and password", () => {
     loginPage.visit();
     loginPage.validLoginData();
     loginPage.rememberMeCheck().click();
