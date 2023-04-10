@@ -7,6 +7,9 @@ describe("Visit admin dashboard", () => {
   beforeEach(() => {
     cy.login();
   });
+  afterEach(() => {
+    cy.logout();
+  });
   it("and validate component", () => {
     // homePage.visit();
     homePage.nopCommerceLogo();
@@ -24,7 +27,6 @@ describe("Visit admin dashboard", () => {
     homePage.popularSearchCard();
     homePage.bestSellerByQtyCard();
     homePage.bestSellerByAmountCard();
-    homePage.logout().click();
-    cy.visit("/login");
+    homePage.logout();
   });
 });

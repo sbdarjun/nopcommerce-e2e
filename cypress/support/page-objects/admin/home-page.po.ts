@@ -1,8 +1,5 @@
 /// <reference types="Cypress" />
 class HomePage {
-  //   visit() {
-  //     cy.visit("/admin");
-  //   }
   nopCommerceLogo() {
     return cy.get(".brand-image-xl").should("exist");
   }
@@ -50,6 +47,12 @@ class HomePage {
   }
   bestSellerByAmountCard() {
     return cy.get("#bestsellers-report-amount-card").should("exist");
+  }
+  adminLogout() {
+    cy.fixture("data").then((data) => {
+      this.logout().click();
+      cy.visit("/login");
+    });
   }
 }
 export default HomePage;
