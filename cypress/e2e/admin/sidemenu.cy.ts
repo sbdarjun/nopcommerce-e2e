@@ -1,1 +1,81 @@
 /// <reference types="Cypress" />
+
+import SideMenu from "../../support/page-objects/admin/sidemenu.po";
+
+describe("Visit Dashboard", () => {
+  var sideMenu = new SideMenu();
+  beforeEach(() => {
+    cy.login();
+  });
+  afterEach(() => {
+    cy.logout();
+  });
+  it("and verify side menu", () => {
+    sideMenu.sideMenu();
+    sideMenu.dashboard();
+    sideMenu.catalog().click();
+    sideMenu.products();
+    sideMenu.categories();
+    sideMenu.manufacturers();
+    sideMenu.productReviews();
+    sideMenu.productTags();
+    sideMenu.attributes().click();
+    sideMenu.productAttributes();
+    sideMenu.specificationAttributes();
+    sideMenu.checkoutAttributes();
+    sideMenu.sales().click();
+    sideMenu.orders();
+    sideMenu.shipments();
+    sideMenu.returnRequests();
+    sideMenu.recurringPayments();
+    sideMenu.giftCards();
+    sideMenu.shoppingAndWishlists();
+    sideMenu.customers().click();
+    sideMenu.customerRoles();
+    sideMenu.onlineCustomers();
+    sideMenu.vendors();
+    sideMenu.activityLog();
+    sideMenu.activityTypes();
+    sideMenu.gdpRequests();
+    sideMenu.promotions().click();
+    sideMenu.discounts();
+    sideMenu.affiliates();
+    sideMenu.newsletterSubscribers();
+    sideMenu.campaigns();
+    sideMenu.contentManagement().click();
+    sideMenu.topics();
+    sideMenu.messageTemplates();
+    sideMenu.newsItems();
+    sideMenu.newsComments();
+    sideMenu.blogPosts();
+    sideMenu.blogComments();
+    sideMenu.polls();
+    sideMenu.forums();
+    sideMenu.configuration().click();
+    sideMenu.settings().click();
+    sideMenu.generalSettings();
+    sideMenu.customerSettings();
+    sideMenu.orderSettings();
+    sideMenu.shippingSettings();
+    sideMenu.taxSettings();
+    sideMenu.catalogsettings();
+    sideMenu.shoppingCartSettings();
+    sideMenu.rewardPoints();
+    sideMenu.gdprSettings();
+    sideMenu.vendorSettings();
+    sideMenu.blogSettings();
+    sideMenu.newsSettings();
+    sideMenu.forumSettings();
+    sideMenu.mediaSettings();
+    sideMenu.allSettings();
+    sideMenu.emailAccounts();
+    sideMenu.stores();
+    sideMenu.countries();
+    sideMenu.languages();
+    sideMenu.currencies();
+    sideMenu.paymentMethods();
+    sideMenu.paymentRestrictions();
+    sideMenu.hamburgerIcon().click();
+    sideMenu.disableSearch();
+  });
+});
