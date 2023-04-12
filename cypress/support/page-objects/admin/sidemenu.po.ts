@@ -163,7 +163,11 @@ class SideMenu {
     return cy.get(".nav-item").contains("Configuration").should("be.visible");
   }
   settings() {
-    return cy.get(".nav-item").contains("Settings").should("be.visible");
+    return cy
+      .get(".nav-item")
+      .contains("Settings")
+      .scrollIntoView()
+      .should("be.visible");
   }
   generalSettings() {
     return cy
@@ -235,7 +239,11 @@ class SideMenu {
     return cy.get(".nav-item").contains("Stores").should("be.visible");
   }
   countries() {
-    return cy.get(".nav-item").contains("Countries").should("be.visible");
+    return cy
+      .get(".nav-item")
+      .contains("Countries")
+      .scrollIntoView()
+      .should("be.visible");
   }
   languages() {
     return cy.get(".nav-item").contains("Languages").should("be.visible");
@@ -261,6 +269,7 @@ class SideMenu {
   shipping() {
     return cy
       .xpath("//li[@class='nav-item has-treeview']/a[contains(.,'Shipping')]")
+      .scrollIntoView()
       .should("be.visible");
   }
   shippingProviders() {
@@ -327,7 +336,11 @@ class SideMenu {
       .should("be.visible");
   }
   system() {
-    return cy.get(".nav-item").contains("System").should("be.visible");
+    return cy
+      .get(".nav-item")
+      .contains("System")
+      .scrollIntoView()
+      .should("be.visible");
   }
   systemInformation() {
     return cy
@@ -354,13 +367,18 @@ class SideMenu {
     return cy
       .get(".nav-item")
       .contains("Search engine friendly page names")
+      .scrollIntoView()
       .should("be.visible");
   }
   templates() {
     return cy.get(".nav-item").contains("Templates").should("be.visible");
   }
   reports() {
-    return cy.get(".nav-item").contains("Reports").should("be.visible");
+    return cy
+      .get(".nav-item")
+      .contains("Reports")
+      .scrollIntoView()
+      .should("be.visible");
   }
   salesSummary() {
     return cy.get(".nav-item").contains("Sales summary").should("be.visible");
@@ -396,16 +414,22 @@ class SideMenu {
     return cy
       .get(".nav-item")
       .contains("Customers by order total")
+      .scrollIntoView()
       .should("be.visible");
   }
   customersByNumberOfOrders() {
     return cy
       .get(".nav-item")
       .contains("Customers by number of orders")
+      .scrollIntoView()
       .should("be.visible");
   }
   help() {
-    return cy.get(".nav-item").contains("Help").should("be.visible");
+    return cy
+      .get(".nav-item")
+      .contains("Help")
+      .scrollIntoView()
+      .should("be.visible");
   }
   training() {
     return cy.get(".nav-item").contains("Training").should("be.visible");
@@ -429,6 +453,7 @@ class SideMenu {
     return cy
       .get(".nav-item")
       .contains("Solution partners")
+      .scrollIntoView()
       .should("be.visible");
   }
 }
