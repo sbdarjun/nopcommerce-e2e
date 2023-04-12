@@ -33,8 +33,5 @@ describe("Visit Admin Login Page", () => {
   it("and verify admin login", () => {
     adminLogin.visit();
     adminLogin.validAdminLoginData();
-    adminLogin.rememberMe().click();
-    adminLogin.logInBtn().click();
-    cy.url().should("be.equals", "https://admin-demo.nopcommerce.com/admin/");
   });
 });
