@@ -1,6 +1,6 @@
 /// <reference types="Cypress" />
 
-import SideMenu from "../../support/page-objects/admin/sidemenu.po";
+import SideMenu from "../../../support/page-objects/admin/sidemenu/sidemenu.po";
 
 describe("Visit Dashboard", () => {
   var sideMenu = new SideMenu();
