@@ -39,5 +39,82 @@ class Products {
   productTable() {
     return cy.get("#products-grid_wrapper").should("be.visible");
   }
+  // search products
+  productNameInput() {
+    return cy.get("#SearchProductName").should("be.visible");
+  }
+  productCategoryInput() {
+    cy.get("#SearchCategoryId").then(($categoryList) => {
+      const categoryOptions = $categoryList.find("option");
+      const randomIndex = Cypress._.random(1, categoryOptions.length - 1);
+      const randomCategoryText =
+        categoryOptions[randomIndex].textContent.trim();
+      cy.get("#SearchCategoryId").select(randomIndex);
+      cy.log("Selected Category:", randomCategoryText);
+    });
+  }
+  searchSubcategories() {
+    return cy.get("#SearchIncludeSubCategories").should("be.visible");
+  }
+  manufactureInput() {
+    cy.get("#SearchManufacturerId").then(($manufacturerList) => {
+      const manufacturerOptions = $manufacturerList.find("option");
+      const randomIndex = Cypress._.random(1, manufacturerOptions.length - 1);
+      const randomManufactureText =
+        manufacturerOptions[randomIndex].textContent.trim();
+      cy.get("#SearchManufacturerId").select(randomIndex);
+      cy.log("Selected Manufacture:", randomManufactureText);
+    });
+  }
+  vendorInput() {
+    cy.get("#SearchVendorId").then(($vendorList) => {
+      const vendorOptions = $vendorList.find("option");
+      const randomIndex = Cypress._.random(1, vendorOptions.length - 1);
+      const randomVendorText = vendorOptions[randomIndex].textContent.trim();
+      cy.get("#SearchVendorId").select(randomIndex);
+    });
+  }
+  warehouseInput() {
+    cy.get("#SearchWarehouseId").then(($warehouseList) => {
+      const warehouseOptions = $warehouseList.find("option");
+      const randomIndex = Cypress._.random(1, warehouseOptions.length - 1);
+      const randomWarehouseText =
+        warehouseOptions[randomIndex].textContent.trim();
+      cy.get("#SearchWarehouseId").select(randomIndex);
+    });
+  }
+  productType() {
+    cy.get("#SearchProductTypeId").then(($productTypeList) => {
+      const productTypeOptions = $productTypeList.find("option");
+      const randomIndex = Cypress._.random(1, productTypeOptions.length - 1);
+      const randomproductTypeText =
+        productTypeOptions[randomIndex].textContent.trim();
+      cy.get("#SearchProductTypeId").select(randomIndex);
+    });
+  }
+  publishedInput() {
+    cy.get("#SearchPublishedId").then(($publishedInputList) => {
+      const publishedInputOptions = $publishedInputList.find("option");
+      const randomIndex = Cypress._.random(1, publishedInputOptions.length - 1);
+      const randompublishedInputText =
+        publishedInputOptions[randomIndex].textContent.trim();
+      cy.get("#SearchPublishedId").select(randomIndex);
+    });
+  }
+  productSKU() {
+    return cy.get("#GoDirectlyToSku").should("be.visible");
+  }
+  goBtn() {
+    return cy.get("#go-to-product-by-sku").contains("Go").should("be.visible");
+  }
+  searchProductBtn() {
+    return cy.get("#search-products").contains("Search").should("be.visible");
+  }
+  emptyProductMessage() {
+    return cy
+      .get(".dataTables_empty")
+      .contains("No data available in table")
+      .should("be.visible");
+  }
 }
 export default Products;
