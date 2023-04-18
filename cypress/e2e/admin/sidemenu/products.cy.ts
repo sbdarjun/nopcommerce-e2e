@@ -1,6 +1,5 @@
 /// <reference types="Cypress" />
 
-import { partialRight } from "cypress/types/lodash";
 import Products from "../../../support/page-objects/admin/sidemenu/products.po";
 import SideMenu from "../../../support/page-objects/admin/sidemenu/sidemenu.po";
 import fake from "../../../fixtures/faker";
@@ -29,12 +28,12 @@ describe("Visit Products Page", () => {
     products.deleteBtn();
     products.searchBody();
     products.productTable();
+    products.productTableHearder();
   });
   it("and Search Product with Invalid Product Name", () => {
     sideMenu.sideMenu();
     sideMenu.catalog().click();
     sideMenu.products().click();
-    products.productTitle();
     products.urlContent();
     products.productNameInput().type(fake.product());
     products.productCategoryInput();
@@ -48,5 +47,36 @@ describe("Visit Products Page", () => {
     products.goBtn();
     products.searchProductBtn().click();
     products.emptyProductMessage();
+  });
+  it("and Verify Product Items from the Table", () => {
+    sideMenu.sideMenu();
+    sideMenu.catalog().click();
+    sideMenu.products().click();
+    products.urlContent();
+    products.body().then(($body) => {
+      if ($body.find("table").length > 0) {
+        cy.log("Table is found");
+        products.tableHeader();
+        products.tableColumnHeader(0).should("exist");
+        products.tableColumnHeader(1).should("contain", "Picture");
+        products.tableColumnHeader(2).should("contain", "Product name");
+        products.tableColumnHeader(3).should("contain", "SKU");
+        products.tableColumnHeader(4).should("contain", "Price");
+        products.tableColumnHeader(5).should("contain", "Stock quantity");
+        products.tableColumnHeader(6).should("contain", "Published");
+        products.tableColumnHeader(7).should("contain", "Edit");
+        products.productTablePagination();
+      } else {
+        cy.log("Table is not found");
+        products.emptyProductMessage();
+      }
+    });
+  });
+  it("and Verify Product Search Functionality", () => {
+    sideMenu.sideMenu();
+    sideMenu.catalog().click();
+    sideMenu.products().click();
+    products.urlContent();
+    products.productTableHearder();
   });
 });

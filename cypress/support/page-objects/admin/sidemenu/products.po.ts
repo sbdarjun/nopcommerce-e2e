@@ -39,6 +39,9 @@ class Products {
   productTable() {
     return cy.get("#products-grid_wrapper").should("be.visible");
   }
+  productTableHearder() {
+    return cy.get(".dataTables_scrollHeadInner").should("be.visible");
+  }
   // search products
   productNameInput() {
     return cy.get("#SearchProductName").should("be.visible");
@@ -115,6 +118,23 @@ class Products {
       .get(".dataTables_empty")
       .contains("No data available in table")
       .should("be.visible");
+  }
+  // data table
+  body() {
+    return cy.get("body");
+  }
+
+  table() {
+    return cy.get("table");
+  }
+  tableHeader() {
+    return cy.get("table > thead > tr");
+  }
+  tableColumnHeader(columnNumber) {
+    return this.tableHeader().find("th").eq(columnNumber);
+  }
+  productTablePagination() {
+    return cy.get("#products-grid_length").should("exist");
   }
 }
 export default Products;
