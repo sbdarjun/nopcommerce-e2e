@@ -39,8 +39,14 @@ class Products {
   productTable() {
     return cy.get("#products-grid_wrapper").should("be.visible");
   }
-  productTableHearder() {
+  productTableHeader() {
     return cy.get(".dataTables_scrollHeadInner").should("be.visible");
+  }
+  getProductsListOnConsole() {
+    cy.get("table tr td:nth-child(3)").then(($inputData) => {
+      const inputData = $inputData.text();
+      cy.log("Product Name:", inputData);
+    });
   }
   // search products
   productNameInput() {
@@ -135,6 +141,25 @@ class Products {
   }
   productTablePagination() {
     return cy.get("#products-grid_length").should("exist");
+  }
+  selectRandomProductName() {
+    let randomData;
+    cy.get("table tbody tr td:nth-child(3)").then(($data) => {
+      const randomIndex = Math.floor(Math.random() * $data.length); // generate a random index number
+      randomData = $data.eq(randomIndex).text(); // store the text content of the randomly selected data in a variable
+      cy.wrap(randomData);
+      this.productNameInput().type(randomData);
+    });
+  }
+  getProductName() {
+    cy.get("table tbody tr").each(($row) => {
+      cy.wrap($row)
+        .find("td:nth-child(3)")
+        .then(($column) => {
+          const displayedData = $column.text();
+          // expect(displayedData).to.equal(this.selectRandomProductName());
+        });
+    });
   }
 }
 export default Products;

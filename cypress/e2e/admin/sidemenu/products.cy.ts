@@ -28,7 +28,7 @@ describe("Visit Products Page", () => {
     products.deleteBtn();
     products.searchBody();
     products.productTable();
-    products.productTableHearder();
+    products.productTableHeader();
   });
   it("and Search Product with Invalid Product Name", () => {
     sideMenu.sideMenu();
@@ -66,6 +66,7 @@ describe("Visit Products Page", () => {
         products.tableColumnHeader(6).should("contain", "Published");
         products.tableColumnHeader(7).should("contain", "Edit");
         products.productTablePagination();
+        products.getProductsListOnConsole();
       } else {
         cy.log("Table is not found");
         products.emptyProductMessage();
@@ -77,6 +78,9 @@ describe("Visit Products Page", () => {
     sideMenu.catalog().click();
     sideMenu.products().click();
     products.urlContent();
-    products.productTableHearder();
+    products.productTableHeader();
+    products.selectRandomProductName();
+    products.searchProductBtn().click();
+    // products.getProductName();
   });
 });
