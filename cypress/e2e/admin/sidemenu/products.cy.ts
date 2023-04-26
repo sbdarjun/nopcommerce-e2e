@@ -83,4 +83,28 @@ describe("Visit Products Page", () => {
     products.searchProductBtn().click();
     // products.getProductName();
   });
+  it("and Verify add Product Functionality", () => {
+    sideMenu.sideMenu();
+    sideMenu.catalog().click();
+    sideMenu.products().click();
+    products.urlContent();
+    cy.wait(1000);
+    products.addNewBtn().click();
+    products.addProductForm();
+    products.addProductHeader();
+    products.addProductURL();
+    products.backToProductList();
+    products.saveAndEditBtn();
+    products.advancedBtn();
+    products.settingsBtn();
+    products.addProductNameInput().type(fake.product());
+    products.shortDescriptionInput().type(fake.sentence());
+    // products
+    //   .fullDescriptionInput()
+    //   .click({ force: true })
+    //   .type(fake.paragraph());
+    products.skuInput().type(fake.slug());
+    products.saveBtn().click({ force: true });
+    products.newProductAddMessage();
+  });
 });

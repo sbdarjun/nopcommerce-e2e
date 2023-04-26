@@ -7,7 +7,10 @@ class Products {
     return cy.get(".content-header").contains("Products").should("be.visible");
   }
   addNewBtn() {
-    return cy.get(".btn-primary").contains("Add new").should("be.visible");
+    return cy
+      .get("div.float-right > a.btn")
+      .contains("Add new")
+      .should("be.visible");
   }
   downloadCatalogAsPDFBtn() {
     return cy
@@ -160,6 +163,69 @@ class Products {
           // expect(displayedData).to.equal(this.selectRandomProductName());
         });
     });
+  }
+  // add new product
+  addProductForm() {
+    return cy.get("#product-form").should("be.visible");
+  }
+  addProductHeader() {
+    return cy.get(".content-header").contains("Add a new product");
+  }
+  backToProductList() {
+    return cy.xpath('//*[@id="product-form"]/div[1]/h1/small').should("exist");
+  }
+  addProductURL() {
+    cy.url().then((url) => {
+      expect(url).to.include("Admin/Product/Create");
+    });
+  }
+  saveBtn() {
+    return cy.get(".btn-primary").contains("Save").should("be.visible");
+  }
+  saveAndEditBtn() {
+    return cy
+      .get(".btn-primary")
+      .contains("Save and Continue Edit")
+      .should("be.visible");
+  }
+  advancedBtn() {
+    return cy.get(".onoffswitch-label").should("be.visible");
+  }
+  settingsBtn() {
+    return cy
+      .get("#product-editor-settings")
+      .contains("Settings")
+      .should("be.visible");
+  }
+  productInfoTitle() {
+    return cy.get(".card-title").contains("Product info").should("be.visible");
+  }
+  addProductNameInput() {
+    return cy.get(".input-group-required").should("be.visible");
+  }
+  shortDescriptionInput() {
+    return cy.xpath('//*[@id="ShortDescription"]').should("be.visible");
+  }
+  fullDescriptionInput() {
+    return cy.get("#FullDescription_ifr").should("be.visible");
+  }
+  skuInput() {
+    return cy.xpath('//*[@id="Sku"]').should("be.visible");
+  }
+  categoriesInput() {
+    cy.get(":nth-child(2) > .col-md-9 > .k-widget > .k-multiselect-wrap").then(
+      ($options) => {
+        const randomIndex = Math.floor(Math.random() * $options.length);
+        const randomOption = $options[randomIndex];
+        cy.wrap(randomOption).click();
+      }
+    );
+  }
+  newProductAddMessage() {
+    return cy
+      .get(".alert-success")
+      .contains("The new product has been added successfully.")
+      .should("be.visible");
   }
 }
 export default Products;

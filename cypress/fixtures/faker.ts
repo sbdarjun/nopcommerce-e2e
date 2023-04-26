@@ -7,5 +7,8 @@ const fake = {
   words: () => faker.random.words(3),
   url: () => faker.internet.url(),
   product: () => faker.commerce.product(),
+  sentence: () => faker.lorem.sentence(),
+  slug: () => faker.lorem.slug(),
+  paragraph: () => faker.lorem.paragraph(),
 };
 export default fake;
