@@ -10,3 +10,6 @@ Cypress.Commands.add("logout", () => {
   const adminLogout = new HomePage();
   adminLogout.adminLogout();
 });
+Cypress.Commands.add("deleteDownloads", () => {
+  cy.exec("rm -rf cypress/downloads/*");
+});

@@ -227,5 +227,19 @@ class Products {
       .contains("The new product has been added successfully.")
       .should("be.visible");
   }
+  editButton() {
+    const buttons = cy.get(":nth-child(n) > .button-column > .btn");
+    buttons.then(($buttons) => {
+      const buttonCount = $buttons.length;
+      const randomButtonIndex = Math.floor(Math.random() * buttonCount);
+      cy.wrap($buttons[randomButtonIndex]).click();
+    });
+  }
+  editProductTitle() {
+    return cy
+      .get(".float-left")
+      .should("be.visible")
+      .contains("Edit product details -");
+  }
 }
 export default Products;

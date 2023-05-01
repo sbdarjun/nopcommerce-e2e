@@ -11,9 +11,10 @@ describe("Visit Products Page", () => {
   beforeEach(() => {
     cy.login();
   });
-  afterEach(() => {
-    cy.logout();
-  });
+
+  // afterEach(() => {
+  //   cy.logout();
+  // });
   it("and Validate Components", () => {
     sideMenu.sideMenu();
     sideMenu.catalog().click();
@@ -106,5 +107,27 @@ describe("Visit Products Page", () => {
     products.skuInput().type(fake.slug());
     products.saveBtn().click({ force: true });
     products.newProductAddMessage();
+  });
+  it.skip("and Verify Catalog Download as PDF functionality", () => {
+    sideMenu.sideMenu();
+    sideMenu.catalog().click({ force: true });
+    sideMenu.products().click({ force: true });
+    products.urlContent();
+    products.downloadCatalogAsPDFBtn().click({ force: true });
+    cy.wait(1000);
+    cy.url().should("include", "/new-page");
+    cy.get("#new-page-element").should("be.visible");
+    cy.readFile("downloads/pdfcatalog.pdf").should("not.be.empty");
+    after(() => {
+      cy.task("deleteDownloads");
+    });
+  });
+  it.only("and Edit Random Products", () => {
+    sideMenu.sideMenu();
+    sideMenu.catalog().click({ force: true });
+    sideMenu.products().click({ force: true });
+    products.urlContent();
+    products.editButton();
+    products.editProductTitle();
   });
 });
