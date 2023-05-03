@@ -1,5 +1,6 @@
 import AdminLogin from "./page-objects/admin/admin-login.po";
 import HomePage from "./page-objects/admin/home-page.po";
+import "cypress-file-upload";
 
 Cypress.Commands.add("login", () => {
   const adminLogin = new AdminLogin();

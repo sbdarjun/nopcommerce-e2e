@@ -130,10 +130,15 @@ describe("Visit Products Page", () => {
     products.editButton();
     products.editProductTitle();
     products.expandButton();
+    cy.wait(10000);
     products.editProductName().clear().type(fake.productName());
     products.editShortDescription().clear().type(fake.productDescription());
     products.gtinInput();
     products.addNewTierPriceBtn();
+    products.uploadFilesBtn();
+    products.fileUploadSuccess();
+    products.editDataSave();
+    products.updateSuccessMessage();
   });
 });
 333;

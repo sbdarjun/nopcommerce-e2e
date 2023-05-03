@@ -282,6 +282,7 @@ class Products {
             .click({ force: true });
           cy.window().then((win) => {
             cy.wrap(win).invoke("focus");
+            win.close();
           });
           // cy.get(".save").should("exist").contains("Save");
           cy.window().then((win) => {
@@ -289,6 +290,23 @@ class Products {
           });
         }
       });
+  }
+  uploadFilesBtn() {
+    const filepath = "image.png";
+    cy.get('input[type="file"]').attachFile(filepath);
+    cy.get(".upload-image-button").should("be.visible").click();
+  }
+  fileUploadSuccess() {
+    return cy.get(".qq-upload-success").should("be.visible");
+  }
+  editDataSave() {
+    return cy.get('[name="save"]').should("be.visible").click();
+  }
+  updateSuccessMessage() {
+    return cy
+      .get(".alert-success")
+      .should("be.visible")
+      .contains("The product has been updated successfully.");
   }
 }
 export default Products;
