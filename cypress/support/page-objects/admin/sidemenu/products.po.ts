@@ -1,4 +1,7 @@
 /// <reference types="Cypress" />
+
+import fake from "../../../../fixtures/faker";
+
 class Products {
   urlContent() {
     cy.url().should("contain", "/Product/List");
@@ -189,7 +192,13 @@ class Products {
       .should("be.visible");
   }
   advancedBtn() {
-    return cy.get(".onoffswitch-label").should("be.visible");
+    cy.get(".onoffswitch-label").then(($button) => {
+      if ($button.find('[data-locale-basic="Basic"]:active').length > 0) {
+        cy.wrap($button).click();
+      } else {
+        // do nothing
+      }
+    });
   }
   settingsBtn() {
     return cy
@@ -239,7 +248,47 @@ class Products {
     return cy
       .get(".float-left")
       .should("be.visible")
-      .contains("Edit product details -");
+      .contains("Edit product details");
+  }
+  editProductName() {
+    return cy.get("#Name").should("be.visible");
+  }
+  editShortDescription() {
+    return cy.get("#ShortDescription").should("be.visible");
+  }
+  gtinInput() {
+    cy.get("#Gtin")
+      .invoke("is", ":visible")
+      .then((isVisible) => {
+        if (isVisible) {
+          cy.get("#Gtin").clear().type(fake.hexadecimal());
+        }
+      });
+  }
+  expandButton() {
+    cy.get(".fa-plus").then(($button) => {
+      if ($button.is(":visible")) {
+        $button.click();
+      }
+    });
+  }
+  addNewTierPriceBtn() {
+    cy.get("#btnAddNewTierPrice")
+      .invoke("is", ":visible")
+      .then((isVisible) => {
+        if (isVisible) {
+          cy.get("#btnAddNewTierPrice")
+            .contains("Add new tier price")
+            .click({ force: true });
+          cy.window().then((win) => {
+            cy.wrap(win).invoke("focus");
+          });
+          // cy.get(".save").should("exist").contains("Save");
+          cy.window().then((win) => {
+            cy.wrap(win).invoke("focus");
+          });
+        }
+      });
   }
 }
 export default Products;

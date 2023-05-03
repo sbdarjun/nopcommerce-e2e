@@ -12,9 +12,9 @@ describe("Visit Products Page", () => {
     cy.login();
   });
 
-  // afterEach(() => {
-  //   cy.logout();
-  // });
+  afterEach(() => {
+    cy.logout();
+  });
   it("and Validate Components", () => {
     sideMenu.sideMenu();
     sideMenu.catalog().click();
@@ -122,12 +122,18 @@ describe("Visit Products Page", () => {
       cy.task("deleteDownloads");
     });
   });
-  it.only("and Edit Random Products", () => {
+  it("and Edit Random Products", () => {
     sideMenu.sideMenu();
     sideMenu.catalog().click({ force: true });
     sideMenu.products().click({ force: true });
     products.urlContent();
     products.editButton();
     products.editProductTitle();
+    products.expandButton();
+    products.editProductName().clear().type(fake.productName());
+    products.editShortDescription().clear().type(fake.productDescription());
+    products.gtinInput();
+    products.addNewTierPriceBtn();
   });
 });
+333;

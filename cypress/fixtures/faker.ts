@@ -10,5 +10,9 @@ const fake = {
   sentence: () => faker.lorem.sentence(),
   slug: () => faker.lorem.slug(),
   paragraph: () => faker.lorem.paragraph(),
+  productName: () => faker.commerce.productName(),
+  productDescription: () => faker.commerce.productDescription(),
+  price: () => faker.commerce.price(),
+  hexadecimal: () => faker.datatype.hexadecimal({ length: 10 }),
 };
 export default fake;
