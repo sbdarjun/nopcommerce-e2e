@@ -308,5 +308,26 @@ class Products {
       .should("be.visible")
       .contains("The product has been updated successfully.");
   }
+  selectRandomCheckBoxes() {
+    cy.get(":nth-child(n) > :nth-child(1) > .checkboxGroups").then(
+      ($checkboxes) => {
+        const randomIndex = Math.floor(Math.random() * $checkboxes.length);
+        cy.wrap($checkboxes[randomIndex]).check();
+      }
+    );
+  }
+  deleteConfirmation() {
+    cy.get(".modal-dialog")
+      .first()
+      .within(() => {
+        cy.contains("Are you sure?");
+        cy.contains("Are you sure you want to perform this action?");
+        cy.should("exist");
+        cy.should("be.visible");
+        cy.get("#delete-selected-action-confirmation-submit-button")
+          .should("be.visible")
+          .click();
+      });
+  }
 }
 export default Products;

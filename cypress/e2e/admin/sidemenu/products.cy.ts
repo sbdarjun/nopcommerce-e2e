@@ -98,6 +98,8 @@ describe("Visit Products Page", () => {
     products.saveAndEditBtn();
     products.advancedBtn();
     products.settingsBtn();
+    products.expandButton();
+    cy.wait(10000);
     products.addProductNameInput().type(fake.product());
     products.shortDescriptionInput().type(fake.sentence());
     // products
@@ -139,6 +141,16 @@ describe("Visit Products Page", () => {
     products.fileUploadSuccess();
     products.editDataSave();
     products.updateSuccessMessage();
+  });
+  it("and Delete Random Products", () => {
+    sideMenu.sideMenu();
+    sideMenu.catalog().click({ force: true });
+    sideMenu.products().click({ force: true });
+    products.urlContent();
+    cy.wait(10000);
+    products.selectRandomCheckBoxes();
+    products.deleteBtn().click();
+    products.deleteConfirmation();
   });
 });
 333;
