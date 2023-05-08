@@ -329,5 +329,13 @@ class Products {
           .click();
       });
   }
+  importConfirmationDialog() {
+    cy.get(".modal-dialog");
+    cy.get(".modal-content").contains("Import from Excel");
+    cy.get(".form-horizontal > .modal-footer > .btn").should("be.visible");
+    cy.get(
+      "#importexcel-window > .modal-dialog > .modal-content > .modal-header > .close > span"
+    ).click();
+  }
 }
 export default Products;

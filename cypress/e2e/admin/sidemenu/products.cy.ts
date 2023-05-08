@@ -15,12 +15,15 @@ describe("Visit Products Page", () => {
   afterEach(() => {
     cy.logout();
   });
-  it("and Validate Components", () => {
+  function redirectIntoProductPage() {
     sideMenu.sideMenu();
-    sideMenu.catalog().click();
-    sideMenu.products().click();
-    products.productTitle();
+    sideMenu.catalog().click({ force: true });
+    sideMenu.products().click({ force: true });
     products.urlContent();
+  }
+  it("and Validate Components", () => {
+    redirectIntoProductPage();
+    products.productTitle();
     products.addNewBtn();
     products.downloadCatalogAsPDFBtn();
     products.exportBtn();
@@ -32,10 +35,7 @@ describe("Visit Products Page", () => {
     products.productTableHeader();
   });
   it("and Search Product with Invalid Product Name", () => {
-    sideMenu.sideMenu();
-    sideMenu.catalog().click();
-    sideMenu.products().click();
-    products.urlContent();
+    redirectIntoProductPage();
     products.productNameInput().type(fake.product());
     products.productCategoryInput();
     products.searchSubcategories().click();
@@ -50,10 +50,7 @@ describe("Visit Products Page", () => {
     products.emptyProductMessage();
   });
   it("and Verify Product Items from the Table", () => {
-    sideMenu.sideMenu();
-    sideMenu.catalog().click();
-    sideMenu.products().click();
-    products.urlContent();
+    redirectIntoProductPage();
     products.body().then(($body) => {
       if ($body.find("table").length > 0) {
         cy.log("Table is found");
@@ -75,20 +72,14 @@ describe("Visit Products Page", () => {
     });
   });
   it("and Verify Product Search Functionality", () => {
-    sideMenu.sideMenu();
-    sideMenu.catalog().click();
-    sideMenu.products().click();
-    products.urlContent();
+    redirectIntoProductPage();
     products.productTableHeader();
     products.selectRandomProductName();
     products.searchProductBtn().click();
     // products.getProductName();
   });
   it("and Verify add Product Functionality", () => {
-    sideMenu.sideMenu();
-    sideMenu.catalog().click();
-    sideMenu.products().click();
-    products.urlContent();
+    redirectIntoProductPage();
     cy.wait(1000);
     products.addNewBtn().click();
     products.addProductForm();
@@ -125,10 +116,7 @@ describe("Visit Products Page", () => {
     });
   });
   it("and Edit Random Products", () => {
-    sideMenu.sideMenu();
-    sideMenu.catalog().click({ force: true });
-    sideMenu.products().click({ force: true });
-    products.urlContent();
+    redirectIntoProductPage();
     products.editButton();
     products.editProductTitle();
     products.expandButton();
@@ -143,14 +131,15 @@ describe("Visit Products Page", () => {
     products.updateSuccessMessage();
   });
   it("and Delete Random Products", () => {
-    sideMenu.sideMenu();
-    sideMenu.catalog().click({ force: true });
-    sideMenu.products().click({ force: true });
-    products.urlContent();
+    redirectIntoProductPage();
     cy.wait(10000);
     products.selectRandomCheckBoxes();
     products.deleteBtn().click();
     products.deleteConfirmation();
   });
+  it("and Import Products from Excel", () => {
+    redirectIntoProductPage();
+    products.importBtn().click();
+    products.importConfirmationDialog();
+  });
 });
-333;
