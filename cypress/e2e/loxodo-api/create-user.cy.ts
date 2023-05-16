@@ -32,7 +32,7 @@ describe("Loxodo API test", () => {
     });
   });
   it("to get created user by id", () => {
-    cy.log("user id is: " + userId);
+    cy.log("created user id is: " + userId);
     // verify the created user by id
     cy.request({
       method: "GET",

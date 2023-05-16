@@ -1,5 +1,4 @@
 /// <reference types="Cypress" />
-import { faker } from "@faker-js/faker";
 
 describe("Loxodo API test", () => {
   let randomUserId;
@@ -22,33 +21,23 @@ describe("Loxodo API test", () => {
       cy.log("selected user id is:" + randomUserId);
     });
   });
-  it("to update random user by id", () => {
-    cy.log("updated user id is: " + randomUserId);
+  it("to delete random user by id", () => {
+    cy.log("deleted user id is: " + randomUserId);
     cy.request({
-      method: "PUT",
-      url: "https://loxodo.tech/api/users",
+      method: "DELETE",
+      url: "https://loxodo.tech/api/users/deactivate/" + randomUserId,
       headers: {
         Authorization: adminToken,
       },
       qs: {
         tenant_id: "soundcore",
       },
-      body: {
-        user_id: randomUserId,
-        user: {
-          name: faker.name.firstName(),
-          email: faker.internet.email(),
-          password: faker.internet.password(),
-          language_code: "ENG",
-          profile_picture: "",
-        },
-      },
     }).then((res) => {
       cy.log(JSON.stringify(res));
       expect(res.status).to.equal(200);
-      expect(res.body.user).has.property("user_id");
-      expect(res.body.user).has.property("name");
-      expect(res.body.user).has.property("email");
+      expect(res.body).has.property("user_id");
+      expect(res.body).has.property("locked");
+      expect(res.body).has.property("message");
     });
   });
 });
