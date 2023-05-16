@@ -14,5 +14,6 @@ const fake = {
   productDescription: () => faker.commerce.productDescription(),
   price: () => faker.commerce.price(),
   hexadecimal: () => faker.datatype.hexadecimal({ length: 10 }),
+  password: () => faker.internet.password(),
 };
 export default fake;
