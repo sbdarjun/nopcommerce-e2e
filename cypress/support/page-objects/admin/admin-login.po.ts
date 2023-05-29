@@ -37,6 +37,9 @@ class AdminLogin {
     cy.fixture("data").then((data) => {
       this.emailInput().clear().type(data.adminUser.email);
       this.passwordInput().clear().type(data.adminUser.password);
+      this.rememberMe().click();
+      this.logInBtn().click();
+      cy.url().should("be.equals", "https://admin-demo.nopcommerce.com/admin/");
     });
   }
 }
